@@ -1,3 +1,6 @@
+var startpage = "landing"
+var pages = ["landing", "projects", "experience", "bio", "contact"];
+
 function showdesc(imageNumber){
     let photo = document.getElementById(`img${imageNumber}`);
     let description = document.getElementById(`desc${imageNumber}`);
@@ -26,4 +29,23 @@ function navdesc(iconName){
         icon.classList.toggle("hidden");
         iconDesc.classList.toggle("hidden");
     }
+}
+
+function goTo(){
+    document.getElementById(startpage).addEventListener('keydown', (e) => {
+        switch (e.key){
+            case "ArrowDown":
+                let i = 0;
+                let goToPage = startpage;
+                for (let page of pages){
+                    if (page == startpage){
+                        goToPage = pages[i+1];
+                        break;
+                    }
+                    i++;
+                }
+                document.querySelector(`#${goToPage}`).scrollIntoView(true);
+                startpage=goToPage;
+        }
+    })
 }
